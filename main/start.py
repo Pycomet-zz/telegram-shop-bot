@@ -7,6 +7,9 @@ def menu(msg):
     c = types.KeyboardButton("💳 Wallet")
     d = types.KeyboardButton("📞 Support")
 
+    keyboard.add(a,b,c,d)
+    return keyboard
+
 
 
 @bot.message_handler(commands=['start'])

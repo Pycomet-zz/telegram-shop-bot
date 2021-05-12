@@ -1,4 +1,5 @@
 from config import *
+from main import *
 
 @server.route('/' + TOKEN, methods=['POST', 'GET'])
 def checkWebhook():
