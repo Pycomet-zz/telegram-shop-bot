@@ -12,9 +12,15 @@ def get_products1():
     return data['First Listing']
 
 
-
 def get_products2():
     "product types & prices"
     file = open('./products.json')
     data = json.load(file)
     return data['Second Listing']  
+
+
+def get_received_msg(msg):
+    "Delete This Message"
+    message_id = msg.message_id
+    chat = msg.chat
+    return chat, message_id

@@ -1,28 +1,27 @@
 {
   "First Listing": [
-    "American Express",
-    "Bank of America",
-    "Barclays",
-    "Capital One",
-    "Chase",
-    "Citibank",
-    "Discover",
-    "Mastercard",
-    "Navy Federal Credit Union",
-    "Pentagon Federal Credit Union",
-    "PNC",
-    "USAA",
-    "U.S. Bank",
-    "Visa",
-    "Wells Fargo"
+    "🏦 American Express",
+    "🏦 Bank of America",
+    "🏦 Barclays",
+    "🏦 Capital One",
+    "🏦 Chase",
+    "🏦 Citibank",
+    "🏦 Discover",
+    "🏦 Mastercard",
+    "🏦 Navy Federal Credit Union",
+    "🏦 Pentagon Federal Credit Union",
+    "🏦 PNC",
+    "🏦 USAA",
+    "🏦 U.S. Bank",
+    "🏦 Visa",
+    "🏦 Wells Fargo"
   ],
   "Second Listing": [
-      "Debit - Online + Email - $2200",
-      "Debit - Online + Email - $1500",
-      "Debit - Online + Email - $1950",
-      "Business Checking + Savings - $4000",
-      "Checking - Online + Email - $500",
-      "Checking - Online + Email - $350"
-  ],
-  "Third Listing": {}
+      "📨 Debit - Online + Email - $2200",
+      "📨 Debit - Online + Email - $1500",
+      "📨 Debit - Online + Email - $1950",
+      "📨 Business Checking + Savings - $4000",
+      "📨 Checking - Online + Email - $500",
+      "📨 Checking - Online + Email - $350"
+  ]
 }

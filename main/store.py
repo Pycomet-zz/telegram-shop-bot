@@ -8,11 +8,13 @@ def menu(msg):
     keyboard = types.InlineKeyboardMarkup(row_width=2)
     keyboard_buttons = []
     for i in res:
-        key = types.InlineKeyboardButton(text=f"{i}", callback_data=f"{i}")
+        key = types.InlineKeyboardButton(text=f"{i}", callback_data="Listing One")
         keyboard_buttons.append(key)
         keyboard.add(key)
 
     return keyboard
+
+
 
 @bot.message_handler(regexp="^🛒 Store")
 def start_store(msg):
