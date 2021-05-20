@@ -11,8 +11,6 @@ engine = create_engine(
     echo=False
 )
 
-
-
 class User(Base):
     """
     SqlAlchemy ORM for Users
@@ -21,9 +19,10 @@ class User(Base):
 
     id = Column(Integer, primary_key=True)
     user_id = Column(Integer)
-    balance = Column(String(10))
+    balance = Column(String(15))
     orders = Column(Integer)
-    wallet = Column(String(32))
+    address = Column(String(50))
+    mnemonic = Column(String(50))
 
     def __repr__(self):
         return "<User(id='%s')>" % (self.id)
