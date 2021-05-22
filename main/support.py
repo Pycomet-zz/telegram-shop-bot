@@ -9,10 +9,7 @@ def startorders(msg):
 
     question = bot.send_message(
         msg.from_user.id,
-        emoji.emojize(
-            "What can we help you do today? Please explain it to us here ...",
-            use_aliases=True
-        )
+        "What can we help you do today? Please explain it to us here ...",
     )
     # question = question.wait()
     

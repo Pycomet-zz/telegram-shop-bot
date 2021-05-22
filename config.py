@@ -1,4 +1,5 @@
 import os
+import telegram
 import time
 from flask import Flask, request
 import telebot
