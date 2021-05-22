@@ -20,6 +20,8 @@ TOKEN = os.getenv('TOKEN')
 
 DEBUG = False
 
+SERVER_URL = os.getenv("SERVER_URL")
+
 FORGING_BLOCK_TOKEN = os.getenv("FORGING_BLOCK_TOKEN")
 
 MAIL = os.getenv("MAIL")
