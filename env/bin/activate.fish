@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/codefred/Documents/ShopBot/env"
+set -gx VIRTUAL_ENV "/home/codefred/Documents/ShopBot/telegram-shop-bot/env"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

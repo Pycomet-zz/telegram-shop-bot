@@ -6,7 +6,7 @@ from sqlalchemy.orm import sessionmaker, relationship, backref
 
 
 Base = declarative_base()
-engine = create_engine("postgres://lqofmcthxoqgtr:de70bb56b8a237ce1b775dbd1b479e20d4f4a41c9484ede12ecfda312e5e3609@ec2-52-0-114-209.compute-1.amazonaws.com:5432/d6u5esh629cgvo")
+engine = create_engine("postgresql://lqofmcthxoqgtr:de70bb56b8a237ce1b775dbd1b479e20d4f4a41c9484ede12ecfda312e5e3609@ec2-52-0-114-209.compute-1.amazonaws.com:5432/d6u5esh629cgvo")
 
 class User(Base):
     """
