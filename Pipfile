@@ -1,0 +1,37 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+certifi = "==2020.12.5"
+chardet = "==4.0.0"
+click = "==8.0.1"
+greenlet = "==1.1.0"
+idna = "==2.10"
+importlib-metadata = "==4.0.1"
+itsdangerous = "==2.0.1"
+psycopg2-binary = "==2.8.6"
+python-dotenv = "==0.17.1"
+python-telegram-bot = "==13.5"
+pytz = "==2021.1"
+requests = "==2.25.1"
+six = "==1.16.0"
+tornado = "==6.1"
+typing-extensions = "==3.10.0.0"
+tzlocal = "==2.1"
+urllib3 = "==1.26.4"
+zipp = "==3.4.1"
+APScheduler = "==3.6.3"
+Flask = "==2.0.1"
+Jinja2 = "==3.0.1"
+MarkupSafe = "==2.0.1"
+pyTelegramBotAPI = "==3.7.9"
+SQLAlchemy = "==1.4.15"
+Werkzeug = "==2.0.1"
+psycopg2 = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
