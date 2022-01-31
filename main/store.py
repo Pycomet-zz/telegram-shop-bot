@@ -1,14 +1,15 @@
+from unicodedata import name
 from config import *
-from utils import get_products1
+from utils import DbFuntions
 import json
 
 def menu(msg):
-    res = get_products1()
+    res = DbFuntions().get_categories()
 
     keyboard = types.InlineKeyboardMarkup(row_width=2)
     keyboard_buttons = []
     for i in res:
-        key = types.InlineKeyboardButton(text=f"{i}", callback_data="Listing One")
+        key = types.InlineKeyboardButton(text=f"🏦  {i[name]}", callback_data="Categories")
         keyboard_buttons.append(key)
         keyboard.add(key)
 

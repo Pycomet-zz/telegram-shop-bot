@@ -30,6 +30,8 @@ pyTelegramBotAPI = "==3.7.9"
 SQLAlchemy = "==1.4.15"
 Werkzeug = "==2.0.1"
 psycopg2 = "*"
+pymongo = {extras = ["srv"], version = "*"}
+flask-pymongo = "*"
 
 [dev-packages]
 

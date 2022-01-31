@@ -1,9 +1,9 @@
 import os
-import telegram
 import time
 from flask import Flask, request
 import telebot
 from telebot import types
+from flask_pymongo import PyMongo
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -18,7 +18,7 @@ logging.basicConfig(
 
 TOKEN = os.getenv('TOKEN')
 
-DEBUG = False
+DEBUG = True
 
 SERVER_URL = os.getenv("SERVER_URL")
 
@@ -29,6 +29,11 @@ PASS = os.getenv("PASS")
 
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
+server.config["MONGO_URI"] = os.getenv('MONGO_URL')
+
+mongo = PyMongo(server)
+
+db = mongo.db
 
 import importdir
 importdir.do("utils", globals())

@@ -18,7 +18,7 @@ def second_menu(msg):
 def payment_menu():
     keyboard = types.InlineKeyboardMarkup(row_width=1)
     a = types.InlineKeyboardButton(text="Buy Product", callback_data="Buy")
-    b = types.InlineKeyboardButton(text="Go Back", callback_data="Listing One")
+    b = types.InlineKeyboardButton(text="Go Back", callback_data="Categories")
     keyboard.add(a, b)
     return keyboard
 
@@ -29,7 +29,7 @@ def callback_answer(call):
     Button Response
     """
 
-    if call.data == "Listing One":
+    if call.data == "Categories":
 
         bot.send_message(
             call.from_user.id,

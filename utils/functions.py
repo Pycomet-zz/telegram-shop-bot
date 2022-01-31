@@ -1,4 +1,5 @@
 import json
+from config import *
 from models import User, session
 from wallet import WalletApi
 
@@ -9,11 +10,40 @@ def get_orders(id):
     pass
 
 
-def get_products1():
-    "Pulls down al the store products"
-    file = open('./products.json')
-    data = json.load(file)
-    return data['First Listing']
+class DbFuntions(object):
+
+    def __init__(self) -> None:
+        pass
+
+    def get_categories(self):
+        "Pulls down al the store categories"
+        res = []
+        cursor = mongo.db.categories.find({})
+        for each in cursor:
+            res.append(each)
+        return res
+
+    def get_product(self, id:str):
+        "Fetch product by a specific ID"
+        products = db['products']
+        products.fin
+
+
+    def get_vendor(self, id:str):
+        "Fetch Vendor"
+        pass
+
+
+    def add_product(self):
+        "Insert Product To Database"
+        pass
+
+    def add_vendor(self):
+        "Add Vendor to Database"
+        pass
+
+
+
 
 
 def get_products2():
