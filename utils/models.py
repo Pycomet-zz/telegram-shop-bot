@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker, relationship, backref
 
 
 Base = declarative_base()
-engine = create_engine(os.getenv("DATABASE_URL"))
+engine = create_engine(os.getenv("DATABASE"))
 
 class User(Base):
     """
