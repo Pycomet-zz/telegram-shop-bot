@@ -41,6 +41,34 @@ class WalletApi(object):
         except Exception as e:
             return "Failed"
 
+    def get_balance_usd(self, address):
+        try:
+            payload = {
+                'address': address
+            }
+            resp = requests.post("https://wallet-api.forgingblock.io/v1/find-btc-address-balance", data=payload).json()
+            balance = resp['balanceUsd']
+            return balance
+
+        except Exception as e:
+            return "Failed"
+
+    def get_rate(self, address):
+        try:
+            payload = {
+                'address': address
+            }
+            resp = requests.post("https://wallet-api.forgingblock.io/v1/find-btc-address-balance", data=payload).json()
+            balance = resp['usdRate']
+            return balance
+
+        except Exception as e:
+            return "Failed"
+
+    def get_btc_fee(self):
+        res = requests.post("https://wallet-api-demo.forgingblock.io/v1/find-btc-fee").json()
+        return res['fastestFee'], res['halfHourFee'], res['hourFee']
+
     def send_money(self, user, amount, wallet):
         try:
             payload = {

@@ -1,25 +1,17 @@
 {
   "Categories": [
-    "🏦 Various bank log",
-    "🏦 Keybank",
-    "🏦 Pnc logs",
-    "🏦 Discover",
-    "🏦 53rd",
-    "🏦 Cc fullz",
-    "🏦 Citi",
-    "🏦 M&T",
-    "🏦 Suntrust",
-    "🏦 Fidelity",
-    "🏦 BOA",
-    "🏦 Navy FCU",
-    "🏦 BECU"
-  ],
-  "Second Listing": [
-      "📨 Debit - Online + Email - $2200",
-      "📨 Debit - Online + Email - $1500",
-      "📨 Debit - Online + Email - $1950",
-      "📨 Business Checking + Savings - $4000",
-      "📨 Checking - Online + Email - $500",
-      "📨 Checking - Online + Email - $350"
+    "Various bank log",
+    "Keybank",
+    "Pnc logs",
+    "Discover",
+    "53rd",
+    "Cc fullz",
+    "Citi",
+    "M&T",
+    "Suntrust",
+    "Fidelity",
+    "BOA",
+    "Navy FCU",
+    "BECU"
   ]
 }

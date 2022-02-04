@@ -1,6 +1,6 @@
 from unicodedata import name
 from config import *
-from utils import DbFuntions
+from utils.functions import DbFuntions
 import json
 
 def menu(msg):
@@ -9,7 +9,7 @@ def menu(msg):
     keyboard = types.InlineKeyboardMarkup(row_width=2)
     keyboard_buttons = []
     for i in res:
-        key = types.InlineKeyboardButton(text=f"🏦  {i[name]}", callback_data="Categories")
+        key = types.InlineKeyboardButton(text=f"🏦  {i}", callback_data=f"category-{i}")
         keyboard_buttons.append(key)
         keyboard.add(key)
 

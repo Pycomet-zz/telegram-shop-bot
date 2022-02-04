@@ -11,7 +11,6 @@ def startorders(msg):
         msg.from_user.id,
         "What can we help you do today? Please explain it to us here ...",
     )
-    # question = question.wait()
     
     bot.register_next_step_handler(question, send_complaint)
 

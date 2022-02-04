@@ -1,25 +1,14 @@
+from math import prod
 from config import *
-from utils import *
+from utils.functions import *
 from .store import *
 
-def second_menu(msg):
-    res = get_products2()
+function = DbFuntions()
 
-
-    keyboard = types.InlineKeyboardMarkup(row_width=2)
-    keyboard_buttons = []
-    for i in res:
-        key = types.InlineKeyboardButton(text=f"{i}", callback_data="Get Product")
-        keyboard_buttons.append(key)
-        keyboard.add(key)
-
-    return keyboard
-
-def payment_menu():
+def payment_menu(product_id:int):
     keyboard = types.InlineKeyboardMarkup(row_width=1)
-    a = types.InlineKeyboardButton(text="Buy Product", callback_data="Buy")
-    b = types.InlineKeyboardButton(text="Go Back", callback_data="Categories")
-    keyboard.add(a, b)
+    a = types.InlineKeyboardButton(text="Buy Product", callback_data=f"buy-{product_id}")
+    keyboard.add(a)
     return keyboard
 
 # Callback Handlers
@@ -28,39 +17,56 @@ def callback_answer(call):
     """
     Button Response
     """
+    query = call.data.split('-')
 
-    if call.data == "Categories":
+    if query[0] == "categories":
+
+        products = function.get_products_by_category(query=query[1])
+        if products is not None:
+            keyboard = types.InlineKeyboardMarkup(row_width=2)
+            keyboard_buttons = []
+            for i in products:
+                key = types.InlineKeyboardButton(text=f"{i.name} - {i.price}$", callback_data=f"product-{i.id}")
+                keyboard_buttons.append(key)
+                keyboard.add(key)
 
         bot.send_message(
             call.from_user.id,
-            "Select your product category and price from the list below ",
-            reply_markup=second_menu(call)
+            f"Select Your Product From The {query[1].upper()} Category ..",
+            reply_markup=keyboard
         )
         bot.delete_message(call.message.chat.id, call.message.message_id)
 
-    elif call.data == "Get Product":
+
+    elif query[0] == "product":
+
+        product = function.get_product_by_id(id=int(query[1]))
 
         bot.send_message(
             call.from_user.id,
-            """
-    ID: 12890
-    Name: Debit-online+email - 2200$
+            f"""
+    <b>ID</b>: {product.id}
+    <b>Name</b>: {product.name} - {product.price}$
 
-s a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+{product.desc}
+------
+{product.url}
             """,
-            reply_markup=payment_menu()
+            reply_markup=payment_menu(product_id=product.id),
+            parse_mode="html"
         )
         bot.delete_message(call.message.chat.id, call.message.message_id)
 
 
-    elif call.data == "Buy":
+    elif query[0] == "buy":
 
+        product = function.get_product_by_id(id=int(query[1]))
         user = get_user(call)
-        balance = update_balance(call)
+        usd_balance = update_balance(call)
 
         #  get specific order
 
-        if float(balance) != 0:
+        if usd_balance <= float(product.price):
             bot.send_message(
                 call.from_user.id,
                 "Insufficient Funds In Your Account",
@@ -68,8 +74,45 @@ s a long established fact that a reader will be distracted by the readable conte
         else:
             bot.send_message(
                 call.from_user.id,
-                "Purchase Request Successfull",
+                "Purchase Request Processing!",
             )
+
+            # create order
+            order = function.create_order(call.from_user.id, product)
+
+            unit_value_btc = client.get_rate(user.address)
+
+            #deduct from balance
+            charge_value = order.price / unit_value_btc
+            vendor = function.get_vendor(id=product.owner)
+
+            res1, res2 = function.charge_user(user, charge_value, vendor.address)
+
+            bot.send_message(
+                ADMIN_ID,
+                f"New Purchase Payout Txid -- {res1} and {res2}"
+            )
+
+            if res1 == "Failed" or res2 == "Failed":
+                bot.send_message(
+                    call.from_user.id,
+                    "Please update your balance to make payouts. Error occurred due to insufficient amount in your wallet"
+                )
+
+            else:    
+                bot.send_message(
+                    call.from_user.id,
+                    f"""
+    <b>Product Id:</b> {product.id}
+    <b>Name:</b> {product.name}
+    ----------------
+    <b>Category:</b> {product.category}
+    <b>Description:</b> {product.desc}
+    <b>Url:</b> {product.url}
+                    
+                    """,
+                    parse_mode="html"
+                )
 
         bot.delete_message(call.message.chat.id, call.message.message_id)
 

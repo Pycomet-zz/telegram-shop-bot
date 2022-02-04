@@ -1,6 +1,6 @@
 from requests.api import request
 from config import *
-from utils import *
+from utils.functions import *
 
 def menu(msg):
     keyboard = types.ReplyKeyboardMarkup(row_width=2)
@@ -39,7 +39,7 @@ def balance(msg):
     bot.reply_to(
         msg,
         f"Your Bitcoin Balance - <b>{user.balance} BTC </b>",
-        parse_mode=telegram.ParseMode.HTML,
+        parse_mode='html',
     )
 
 @bot.message_handler(regexp="^⬇️ Deposit")
@@ -56,7 +56,7 @@ def deposit(msg):
     bot.send_message(
         user.id,
         f"<b>{user.address}</b>",
-        parse_mode=telegram.ParseMode.HTML,       
+        parse_mode='html',       
     )
 
 
@@ -86,7 +86,7 @@ def process_withdrawal(msg):
         bot.send_message(
             user.id,
             "<b>Withdrawal Request Accepted</b>",
-            parse_mode=telegram.ParseMode.HTML,     
+            parse_mode='html',     
         )
 
         # Make payment
@@ -101,7 +101,7 @@ def process_withdrawal(msg):
         bot.send_message(
             user.id,
             "<b>Withdrawal Request Denied! Insufficient Funds On Your Account</b>",
-            parse_mode=telegram.ParseMode.HTML,     
+            parse_mode='html',     
         )
 
 
@@ -119,7 +119,7 @@ def make_payment(msg):
         bot.send_message(
             user.id,
             f"<b>Bitcoin Sent Out Successfully, Here Is The Transaction ID - {result}</b>",
-            parse_mode=telegram.ParseMode.HTML, 
+            parse_mode='html', 
         )
 
     else:
@@ -127,7 +127,7 @@ def make_payment(msg):
         bot.send_message(
             user.id,
             f"<b>Bitcoin Sent Out Failed! Try Again With A Lesser Amount",
-            parse_mode=telegram.ParseMode.HTML, 
+            parse_mode='html', 
         )
 
 

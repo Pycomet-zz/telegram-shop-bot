@@ -1,3 +1,4 @@
+from itertools import product
 import os
 from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy import create_engine
@@ -22,6 +23,39 @@ class User(Base):
 
     def __repr__(self):
         return "<User(id='%s')>" % (self.id)
+
+
+
+class Vendor(Base):
+    __tablename__ = "vendors"
+
+    id = Column(Integer, primary_key=True)
+    address = Column(String(50))
+    mnemonic = Column(String(200))
+    xpub = Column(String(200))
+
+
+
+class Product(Base):
+    __tablename__ = "products"
+
+    id = Column(String(16), primary_key=True)
+    owner = Column(Integer)
+    name = Column(String(20))
+    category = Column(String(20))
+    desc = Column(String(500))
+    price = Column(Integer)
+    url = Column(String(100))
+    orders = relationship("Order", cascade="all, delete-orphan")
+
+
+class Order(Base):
+    __tablename__ = "orders"
+
+    id = Column(Integer, primary_key=True)
+    cost = Column(String(50))
+    product_id =  Column(ForeignKey("products.id", ondelete="CASCADE"))
+    product = relationship("Product", uselist=False)
 
 
 

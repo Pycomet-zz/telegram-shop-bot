@@ -20,6 +20,10 @@ TOKEN = os.getenv('TOKEN')
 
 DEBUG = False
 
+ADMIN_ID = os.getenv("ADMIN_ID")
+
+ADMIN_WALLET = os.getenv("ADMIN_WALLET")
+
 SERVER_URL = os.getenv("SERVER_URL")
 
 FORGING_BLOCK_TOKEN = os.getenv("FORGING_BLOCK_TOKEN")
