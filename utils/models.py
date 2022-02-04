@@ -1,4 +1,3 @@
-from config import *
 from itertools import product
 import os
 from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
@@ -8,7 +7,7 @@ from sqlalchemy.orm import sessionmaker, relationship, backref
 
 
 Base = declarative_base()
-engine = create_engine(DATABASE_URL)
+engine = create_engine(os.getenv("DATABASE_URL"))
 
 class User(Base):
     """
