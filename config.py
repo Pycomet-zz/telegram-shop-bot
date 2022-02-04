@@ -20,7 +20,7 @@ TOKEN = os.getenv('TOKEN')
 
 DEBUG = False
 
-DATABASE_URL = os.getnv("DATABASE_URL")
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 ADMIN_ID = os.getenv("ADMIN_ID")
 
