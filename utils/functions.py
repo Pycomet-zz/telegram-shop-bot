@@ -61,8 +61,8 @@ class DbFuntions(object):
         vendors = session.query(Vendor)
         return vendors
 
-    def get_all_orders(cls) -> list:
-        orders = session.query(Order)
+    def get_user_orders(cls, user_id:int) -> list:
+        orders = session.query(Order).filter_by(id=user_id)
         return orders
 
     def get_vendor(cls, id:str) -> Vendor | None:

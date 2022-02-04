@@ -20,6 +20,8 @@ TOKEN = os.getenv('TOKEN')
 
 DEBUG = False
 
+DATABASE_URL = os.getnv("DATABASE_URL")
+
 ADMIN_ID = os.getenv("ADMIN_ID")
 
 ADMIN_WALLET = os.getenv("ADMIN_WALLET")
