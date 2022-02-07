@@ -22,7 +22,7 @@ def callback_answer(call):
     if query[0] == "categories":
 
         products = function.get_products_by_category(query=query[1])
-        if products is not None:
+        if products != None:
             keyboard = types.InlineKeyboardMarkup(row_width=2)
             keyboard_buttons = []
             for i in products:

@@ -7,7 +7,7 @@ def verify(msg):
     Verifying an vendor account
     """
     
-    if msg.from_user.id is not ADMIN_ID:
+    if msg.from_user.id != ADMIN_ID:
         bot.reply_to(
             msg,
             "You are not authorized to use this command."
@@ -33,7 +33,7 @@ def add_vendor(msg):
         user_id = int(msg.text)
     )
 
-    if vendor is not None:
+    if vendor != None:
         bot.send_message(
             msg.from_user.id,
             "<b>New Vendor {vendor.id} Created!</b>",

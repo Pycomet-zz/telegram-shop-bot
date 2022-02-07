@@ -1,3 +1,2 @@
-from wallet import *
-from functions import *
-from models import *
+from .wallet import *
+from .functions import *

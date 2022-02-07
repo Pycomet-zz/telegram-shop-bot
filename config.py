@@ -20,7 +20,6 @@ TOKEN = os.getenv('TOKEN')
 
 DEBUG = False
 
-
 DATABASE_URL = os.getenv("DATABASE")
 
 ADMIN_ID = os.getenv("ADMIN_ID")
@@ -41,6 +40,3 @@ server.config["MONGO_URI"] = os.getenv('MONGO_URL')
 mongo = PyMongo(server)
 
 db = mongo.db
-
-import importdir
-importdir.do("utils", globals())

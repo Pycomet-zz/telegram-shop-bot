@@ -7,7 +7,7 @@ from xmlrpc.client import Boolean
 from flask import session
 from config import *
 from utils.models import *
-from wallet import WalletApi
+from utils.wallet import WalletApi
 
 client = WalletApi()
 

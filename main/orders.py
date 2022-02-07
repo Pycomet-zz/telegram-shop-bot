@@ -7,9 +7,10 @@ from utils.models import Order
 def startorders(msg):
     "Returns a list of orders assosciated with a user"
 
-    orders = DbFuntions().get_user_orders(msg.from_user.id)
+    orders_obj = DbFuntions().get_user_orders(msg.from_user.id)
+    orders = [i for i in orders_obj]
 
-    if orders is not None:
+    if orders != []:
         for order in orders:
             bot.send_message(
                 msg.from_user.id,

@@ -18,7 +18,7 @@ function = DbFuntions()
 def vendor(msg):
     "This Opens the Vendor Service"
     vendor = function.get_vendor(id=msg.from_user.id)
-    if vendor is not None:
+    if vendor != None:
         bot.reply_to(
             msg,
             f"Welcome to your Vendor Panel {msg.from_user.first_name}",
@@ -39,7 +39,7 @@ def view_products(msg):
 
     products = function.get_user_products(user_id=msg.from_user.id)
 
-    if products is not None:
+    if products != None:
         
         for product in products:
             bot.send_message(
