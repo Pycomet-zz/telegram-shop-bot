@@ -19,9 +19,27 @@ def callback_answer(call):
     """
     query = call.data.split('-')
 
-    if query[0] == "categories":
+    if query[0] == "category":
 
-        products = function.get_products_by_category(query=query[1])
+        products = function.get_subcategories(query=query[1])
+        if products != []:
+            keyboard = types.InlineKeyboardMarkup(row_width=2)
+            keyboard_buttons = []
+            for i in products:
+                key = types.InlineKeyboardButton(text=f"{i}$", callback_data=f"subcategory-{i}")
+                keyboard_buttons.append(key)
+                keyboard.add(key)
+
+        bot.send_message(
+            call.from_user.id,
+            f"Select Your Product From The {query[1].upper()} Sub-Category ..",
+            reply_markup=keyboard
+        )
+        bot.delete_message(call.message.chat.id, call.message.message_id)
+
+    elif query[0] == "subcategory":
+        
+        products = function.get_products_by_subcategory(query=query[1])
         if products != None:
             keyboard = types.InlineKeyboardMarkup(row_width=2)
             keyboard_buttons = []
@@ -75,6 +93,12 @@ def callback_answer(call):
             bot.send_message(
                 call.from_user.id,
                 "Purchase Request Processing!",
+            )
+
+            function.delete_product(product.id)
+            bot.send_message(
+                ADMIN_ID,
+                f"Product {product.id} Sold & Deleted From Store!"
             )
 
             # create order

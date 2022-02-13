@@ -81,14 +81,15 @@ class WalletApi(object):
 
             amount = '%.5f' % float(amount)
 
-            payload = {
-                'orgAddress': user.address,
-                'wif': resp1['wif'],
-                'amountToSend': amount,
-                'recipientAddress': wallet
-            }
-            response = requests.post("https://wallet-api.forgingblock.io/v1/send-btc-transaction", data=payload).json()
-            return response['txid']
+            # payload = {
+            #     'orgAddress': user.address,
+            #     'wif': resp1['wif'],
+            #     'amountToSend': amount,
+            #     'recipientAddress': wallet
+            # }
+            # response = requests.post("https://wallet-api.forgingblock.io/v1/send-btc-transaction", data=payload).json()
+            # return response['txid']
+            return "error"
 
         except Exception as e:
             return "Failed"

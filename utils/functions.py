@@ -24,16 +24,43 @@ class DbFuntions(object):
         res = data['Categories']
         return res
 
+    def get_all_subcategories(self) -> list:
+        "Pulls down all available sub catgories"
+        products = session.query(Product)
+
+        res = []
+        for each in products:
+            if each.subcategory in res:
+                pass
+            else:
+                res.append(each.subcategory)
+        return res
+
+    def get_subcategories(self, query:str) -> list:
+        "Get Sub Categories"
+        products = session.query(Product).filter_by(category=query)
+        res = []
+        for each in products:
+            if each.subcategory in res:
+                pass
+            else:
+                res.append(each.subcategory)
+        return res
 
     def get_user_products(cls, user_id:int) -> Product | None:
         "Fetch product by a specific ID"
         products = session.query(Product).filter_by(owner=user_id)
         return products
 
-    def get_products_by_category(cls, query:str) -> Product | None:
+    def get_products_by_category(cls, query:str) -> list:
         "Fetch Products by category"
         products = session.query(Product).filter_by(category=query)
-        return products
+        return list(products)
+
+    def get_products_by_subcategory(cls, query:str) -> list:
+        "Fetch Products by category"
+        products = session.query(Product).filter_by(subcategory=query)
+        return list(products)
 
     def get_product_by_id(cls, id:int) -> Product | None:
         product = session.query(Product).filter_by(id=id).first()
@@ -99,6 +126,18 @@ class DbFuntions(object):
 
         if text in categories:
             self.product.category = text
+            session.add(self.product)
+            self.category = text
+            return True
+        else:
+            return False
+
+    def add_subcategory(self, text:str) -> Boolean:
+        "Add Sub Category Of Product"
+        categories = self.get_all_subcategories()
+
+        if text in categories:
+            self.product.subcategory = text
             session.add(self.product)
             return True
         else:

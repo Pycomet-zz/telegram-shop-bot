@@ -70,11 +70,36 @@ def add_category(msg):
             else:
                 question = bot.send_message(
                     msg.from_user.id,
+                    "Paste in the sub-category name for this product without the emoji .."
+                )
+                # question = question.wait()
+                bot.register_next_step_handler(question, add_subcategory)
+
+
+def add_subcategory(msg):
+    "Adding A Sub Category"
+    category = msg.text.lower()
+
+    categories = function.get_all_subcategories()
+    for each in categories:
+        if each.lower() == category:
+
+            status = function.add_subcategory(text=category)
+
+            if status == False:
+
+                bot.reply_to(
+                    msg,
+                    "Wrong Sub Category! Start over!"
+                )
+            
+            else:
+                question = bot.send_message(
+                    msg.from_user.id,
                     "Please provide a brief description of your product .."
                 )
                 # question = question.wait()
                 bot.register_next_step_handler(question, add_desc)
-
 
 
 def add_desc(msg):
