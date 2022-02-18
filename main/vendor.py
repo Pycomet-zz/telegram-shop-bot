@@ -24,7 +24,7 @@ def vendor(msg):
             f"Welcome to your Vendor Panel {msg.from_user.first_name}",
             reply_markup=vendor_menu(msg)
         )
-    elif msg.from_user.id == int(ADMIN_ID):
+    elif msg.from_user.id == ADMIN_ID:
 
         bot.reply_to(
             msg,
