@@ -1,5 +1,3 @@
-from turtle import update
-from requests.api import request
 from config import *
 from utils.functions import *
 
