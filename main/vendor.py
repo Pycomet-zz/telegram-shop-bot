@@ -34,7 +34,7 @@ def vendor(msg):
     else:
         bot.reply_to(
             msg,
-            f"{vendor} {ADMIN_ID} You are gnot a vendor, contact support!"
+            f" You are gnot a vendor, contact support!"
         )
 
 

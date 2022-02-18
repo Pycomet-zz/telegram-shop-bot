@@ -7,7 +7,7 @@ def verify(msg):
     Verifying an vendor account
     """
     
-    if msg.from_user.id != ADMIN_ID:
+    if int(msg.from_user.id) != int(ADMIN_ID):
         bot.reply_to(
             msg,
             "You are not authorized to use this command."
