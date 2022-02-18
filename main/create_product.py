@@ -14,7 +14,7 @@ def product_create(msg):
 
     vendor = function.get_vendor(msg.from_user.id)
 
-    if vendor is not None:
+    if vendor == None and msg.from_user.id != int(ADMIN_ID):
         bot.reply_to(
             msg,
             "You are not authorized vendor, contact support if you wish to sell with this service."

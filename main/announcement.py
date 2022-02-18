@@ -5,7 +5,7 @@ from utils.functions import DbFuntions
 def blast(msg):
     "Send Broadcast To All Vendors"
 
-    if msg.from_user.id is not ADMIN_ID:
+    if msg.from_user.id == int(ADMIN_ID):
         bot.reply_to(
             msg,
             "You are not authorized to use this command."
