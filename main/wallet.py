@@ -1,3 +1,4 @@
+from turtle import update
 from requests.api import request
 from config import *
 from utils.functions import *
@@ -35,10 +36,11 @@ def balance(msg):
     "Returns user's balance"
 
     user = get_user(msg)
+    balance = update_balance(msg)
 
     bot.reply_to(
         msg,
-        f"Your Bitcoin Balance - <b>{user.balance} BTC </b>",
+        f"Your Bitcoin Balance - <b>{balance} BTC </b>",
         parse_mode='html',
     )
 
