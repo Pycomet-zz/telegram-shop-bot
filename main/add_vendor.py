@@ -33,12 +33,20 @@ def add_vendor(msg):
         user_id = int(msg.text)
     )
 
-    if vendor != None:
+    if vendor == True:
         bot.send_message(
             msg.from_user.id,
             "<b>New Vendor {vendor.id} Created!</b>",
             parse_mode="HTML"
         )
+
+    elif vendor == False:
+        bot.send_message(
+            msg.from_user.id,
+            "<b>New Already Exists!</b>",
+            parse_mode="HTML"
+        )
+
     else:
         bot.send_message(
             msg.from_user.id,

@@ -8,9 +8,10 @@ from utils.functions import DbFuntions
 
 function = DbFuntions()
 
-@bot.message_handler(regexp=['^Add New Product 🟢'])
+@bot.message_handler(regexp='^Add New Product 🟢')
 def product_create(msg):
     "Creates A New Product For The User"
+    import pdb; pdb.set_trace()
 
     vendor = function.get_vendor(msg.from_user.id)
 

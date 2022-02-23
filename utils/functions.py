@@ -66,14 +66,25 @@ class DbFuntions(object):
         product = session.query(Product).filter_by(id=id).first()
         return product
 
+    def fetch_user(self, id:int) -> User:
+        user = session.query(User).filter_by(id=id).first()
+        if user:
+            return user
+        else:
+            mnemonic, address = client.create_wallet()
+            user = User(id=id, balance="0", orders=0, address=address, mnemonic=mnemonic)
+            session.add(user)
+            session.commit()
+            return user
+
 
     def create_vendor(cls, user_id:int) -> Vendor:
         "Create A New Vendor To The dateabase"
         vendor = session.query(Vendor).filter_by(id=user_id).first()
 
-        user = get_user(user_id)
+        user = cls.fetch_user(id=user_id)
 
-        if vendor is None:
+        if vendor == None:
 
             vendor = Vendor(
                 id=user_id,
@@ -82,6 +93,11 @@ class DbFuntions(object):
             )
             session.add(vendor)
             session.commit()
+            
+            return True
+        
+        else:
+            return False
 
     def get_all_vendors(cls) -> list:
         "Fetch All Vendors"

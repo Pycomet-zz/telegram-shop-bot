@@ -40,7 +40,7 @@ def vendor(msg):
 
 
 
-@bot.message_handler(regexp=['^View All Products 🟡'])
+@bot.message_handler(regexp='^View All Products 🟡')
 def view_products(msg):
     "This Returns All the User's Products"
 
@@ -76,7 +76,7 @@ def view_products(msg):
 
 
 
-@bot.message_handler(regexp=['^Delete Product 🔴"'])
+@bot.message_handler(regexp='^Delete Product 🔴')
 def delete_product(msg):
 
 

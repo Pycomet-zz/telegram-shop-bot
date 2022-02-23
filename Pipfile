@@ -11,7 +11,6 @@ greenlet = "==1.1.0"
 idna = "==2.10"
 importlib-metadata = "==4.0.1"
 itsdangerous = "==2.0.1"
-psycopg2-binary = "==2.8.6"
 python-dotenv = "==0.17.1"
 python-telegram-bot = "==13.5"
 pytz = "==2021.1"
@@ -29,9 +28,6 @@ MarkupSafe = "==2.0.1"
 pyTelegramBotAPI = "==3.7.9"
 SQLAlchemy = "==1.4.15"
 Werkzeug = "==2.0.1"
-psycopg2 = "*"
-pymongo = {extras = ["srv"], version = "*"}
-flask-pymongo = "*"
 
 [dev-packages]
 

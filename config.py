@@ -18,7 +18,7 @@ logging.basicConfig(
 
 TOKEN = os.getenv('TOKEN')
 
-DEBUG = False
+DEBUG = True
 
 DATABASE_URL = os.getenv("DATABASE")
 
@@ -35,8 +35,3 @@ PASS = os.getenv("PASS")
 
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
-server.config["MONGO_URI"] = os.getenv('MONGO_URL')
-
-mongo = PyMongo(server)
-
-db = mongo.db

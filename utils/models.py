@@ -46,7 +46,7 @@ class Product(Base):
     owner = Column(Integer)
     name = Column(String(20))
     category = Column(String(20))
-    subcategory = Column(String(20))
+    subcategory = Column(String(20), default="None")
     desc = Column(String(500))
     price = Column(Integer)
     url = Column(String(100))
