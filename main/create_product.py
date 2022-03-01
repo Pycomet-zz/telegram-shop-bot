@@ -15,13 +15,14 @@ def product_create(msg):
 
     vendor = function.get_vendor(msg.from_user.id)
 
-    if vendor == None and int(msg.from_user.id) != int(ADMIN_ID):
+    if vendor == None:
         bot.reply_to(
             msg,
             "You are not authorized vendor, contact support if you wish to sell with this service."
         )
 
     elif int(msg.from_user.id) == int(ADMIN_ID):
+        function.create_vendor(msg.from_user.id)
 
         question = bot.send_message(
             msg.from_user.id,

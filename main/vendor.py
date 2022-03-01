@@ -24,7 +24,8 @@ def vendor(msg):
             f"Welcome to your Vendor Panel {msg.from_user.first_name}",
             reply_markup=vendor_menu(msg)
         )
-    elif int(msg.from_user.id) == int(ADMIN_ID) and vendor != None:
+    elif int(msg.from_user.id) == int(ADMIN_ID):
+        function.create_vendor(msg.from_user.id)
 
         bot.reply_to(
             msg,
@@ -34,7 +35,7 @@ def vendor(msg):
     else:
         bot.reply_to(
             msg,
-            f" You are gnot a vendor, contact support!"
+            f" You are not a vendor, contact support!"
         )
 
 
