@@ -23,4 +23,12 @@ def start_store(msg):
 
     user_id = msg.from_user.id 
 
-    bot.reply_to(msg, "Welcome To The ShopBot Store 🛒", reply_markup=menu(msg))
+    bot.reply_to(
+        msg,
+        """
+        Welcome To The ShopBot Store 🛒 
+        
+note: <b>1 credit is equal to $1</b>""",
+        reply_markup=menu(msg),
+        parse_mode="html"
+    )

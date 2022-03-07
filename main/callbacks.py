@@ -26,7 +26,7 @@ def callback_answer(call):
             keyboard = types.InlineKeyboardMarkup(row_width=2)
             keyboard_buttons = []
             for i in products:
-                key = types.InlineKeyboardButton(text=f"{i}$", callback_data=f"subcategory-{i}")
+                key = types.InlineKeyboardButton(text=f"{i}", callback_data=f"subcategory-{i}")
                 keyboard_buttons.append(key)
                 keyboard.add(key)
 
@@ -44,7 +44,7 @@ def callback_answer(call):
             keyboard = types.InlineKeyboardMarkup(row_width=2)
             keyboard_buttons = []
             for i in products:
-                key = types.InlineKeyboardButton(text=f"{i.name} - {i.price}$", callback_data=f"product-{i.id}")
+                key = types.InlineKeyboardButton(text=f"{i.name} - {i.price} credits", callback_data=f"product-{i.id}")
                 keyboard_buttons.append(key)
                 keyboard.add(key)
 
@@ -64,7 +64,7 @@ def callback_answer(call):
             call.from_user.id,
             f"""
     <b>ID</b>: {product.id}
-    <b>Name</b>: {product.name} - {product.price}$
+    <b>Name</b>: {product.name} - {product.price} credits
 
 {product.desc}
 ------

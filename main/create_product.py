@@ -66,25 +66,43 @@ def add_category(msg):
     category = msg.text.lower()
 
     categories = function.get_categories()
-    for each in categories:
-        if each.lower() == category:
+    if categories != []:
+        for each in categories:
+            if each.lower() == category:
 
-            status = function.add_category(text=category)
+                status = function.add_category(text=category)
 
-            if status == False:
+                if status == False:
 
-                bot.reply_to(
-                    msg,
-                    "Wrong Category! Start over!"
-                )
-            
-            else:
-                question = bot.send_message(
-                    msg.from_user.id,
-                    "Paste in the sub-category name for this product without the emoji .."
-                )
-                # question = question.wait()
-                bot.register_next_step_handler(question, add_subcategory)
+                    bot.reply_to(
+                        msg,
+                        "Wrong Category! Start over!"
+                    )
+                
+                else:
+                    question = bot.send_message(
+                        msg.from_user.id,
+                        "Paste in the sub-category name for this product without the emoji .."
+                    )
+                    # question = question.wait()
+                    bot.register_next_step_handler(question, add_subcategory)
+    else:
+        status = function.add_category(text=category)
+
+        if status == False:
+
+            bot.reply_to(
+                msg,
+                "Wrong Category! Start over!"
+            )
+        
+        else:
+            question = bot.send_message(
+                msg.from_user.id,
+                "Paste in the sub-category name for this product without the emoji .."
+            )
+            # question = question.wait()
+            bot.register_next_step_handler(question, add_subcategory)
 
 
 def add_subcategory(msg):
@@ -92,26 +110,43 @@ def add_subcategory(msg):
     category = msg.text.lower()
 
     categories = function.get_all_subcategories()
-    for each in categories:
-        if each.lower() == category:
+    if categories != []:
+        for each in categories:
+            if each.lower() == category:
 
-            status = function.add_subcategory(text=category)
+                status = function.add_subcategory(text=category)
 
-            if status == False:
+                if status == False:
 
-                bot.reply_to(
-                    msg,
-                    "Wrong Sub Category! Start over!"
-                )
+                    bot.reply_to(
+                        msg,
+                        "Wrong Sub Category! Start over!"
+                    )
+                
+                else:
+                    question = bot.send_message(
+                        msg.from_user.id,
+                        "Please provide a brief description of your product .."
+                    )
+                    # question = question.wait()
+                    bot.register_next_step_handler(question, add_desc)
+    else:
+        status = function.add_subcategory(text=category)
+
+        if status == False:
             
-            else:
-                question = bot.send_message(
-                    msg.from_user.id,
-                    "Please provide a brief description of your product .."
-                )
-                # question = question.wait()
-                bot.register_next_step_handler(question, add_desc)
-
+            bot.reply_to(
+                msg,
+                "Wrong Sub Category! Start over!"
+            )
+        
+        else:
+            question = bot.send_message(
+                msg.from_user.id,
+                "Please provide a brief description of your product .."
+            )
+            # question = question.wait()
+            bot.register_next_step_handler(question, add_desc)
 
 def add_desc(msg):
     "Add Description"

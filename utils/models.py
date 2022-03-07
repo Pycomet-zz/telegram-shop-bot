@@ -62,8 +62,6 @@ class Order(Base):
     product = relationship("Product", uselist=False)
 
 
-
-
 # Base.metadata.drop_all(bind=engine)
 # Base.metadata.create_all(bind=engine)
 
@@ -72,6 +70,31 @@ class Order(Base):
 Session = sessionmaker(bind=engine, autoflush=False)
 
 session = Session()
+
+
+# product1 = Product(
+#     id=1,
+#     owner=577180091,
+#     name="Test1 Product",
+#     category="First Store",
+#     subcategory="Shop1",
+#     desc="Blah blah blah",
+#     price=5000,
+#     url="www.google.com"
+#     )
+# product2 = Product(
+#     id=2,
+#     owner=577180091,
+#     name="Test2 Product",
+#     category="Second Store",
+#     subcategory="Shop2",
+#     desc="Blah blah blah",
+#     price=500,
+#     url="www.google.com"
+#     )
+# session.add(product1)
+# session.add(product2)
+# session.commit()
 
 # import pdb; pdb.set_trace()
 session.close()

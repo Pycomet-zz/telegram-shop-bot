@@ -4,15 +4,15 @@ from utils.functions import *
 def menu(msg):
     keyboard = types.ReplyKeyboardMarkup(row_width=2)
     a = types.KeyboardButton("⬇️ Deposit")
-    b = types.KeyboardButton("⬆️ Withdraw")
+    # b = types.KeyboardButton("⬆️ Withdraw")
     c = types.KeyboardButton("My Balance 💰")
-    keyboard.add(a, b, c)
+    keyboard.add(a, c)
     return keyboard
 
 
 @bot.message_handler(regexp="^💳 Wallet")
 def startwallet(msg):
-    "Starts the wallet section"
+    "Starts the wallet section" 
 
     user = get_user(msg)
 

@@ -18,7 +18,7 @@ logging.basicConfig(
 
 TOKEN = os.getenv('TOKEN')
 
-DEBUG = False
+DEBUG = True
 
 DATABASE_URL = os.getenv("DATABASE")
 

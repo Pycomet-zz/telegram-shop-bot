@@ -19,26 +19,46 @@ class DbFuntions(object):
 
     def get_categories(self):
         "Pulls down al the store categories"
-        file = open('./products.json')
-        data = json.load(file)
-        res = data['Categories']
+        products = session.query(Product)
+
+        res = []
+        for each in products:
+            if each.category in res:
+                pass
+
+            elif each.category is None:
+                pass
+                
+            else:
+                res.append(each.category)
         return res
 
     def get_all_subcategories(self) -> list:
         "Pulls down all available sub catgories"
-        products = session.query(Product)
+        products = session.query(Product).all()
 
         res = []
         for each in products:
             if each.subcategory in res:
                 pass
+
+            elif each.subcategory is None:
+                pass
+
+
+            elif each.subcategory == 'None':
+                pass
+                
+
             else:
                 res.append(each.subcategory)
         return res
 
     def get_subcategories(self, query:str) -> list:
         "Get Sub Categories"
-        products = session.query(Product).filter_by(category=query)
+        all_products = session.query(Product).all()
+        products = [item for item in all_products if item.category == query]
+
         res = []
         for each in products:
             if each.subcategory in res:
@@ -49,25 +69,31 @@ class DbFuntions(object):
 
     def get_user_products(cls, user_id:int) -> Product | None:
         "Fetch product by a specific ID"
-        products = session.query(Product).filter_by(owner=user_id)
+        all_products = session.query(Product).all()
+        products = [item for item in all_products if item.owner == user_id]
         return products
 
     def get_products_by_category(cls, query:str) -> list:
         "Fetch Products by category"
-        products = session.query(Product).filter_by(category=query)
+        all_products = session.query(Product).all()
+        products = [item for item in all_products if item.category == query]
         return list(products)
 
     def get_products_by_subcategory(cls, query:str) -> list:
         "Fetch Products by category"
-        products = session.query(Product).filter_by(subcategory=query)
+        all_products = session.query(Product).all()
+        products = [item for item in all_products if item.subcategory == query]
         return list(products)
 
     def get_product_by_id(cls, id:int) -> Product | None:
-        product = session.query(Product).filter_by(id=id).first()
+        all_products = session.query(Product).all()
+        products = [item for item in all_products if item.id == id]
         return product
 
     def fetch_user(self, id:int) -> User:
-        user = session.query(User).filter_by(id=id).first()
+        # user = session.query(User).filter_by(id=id).first()
+        users = session.query(User).all()
+        user = [item for item in users if item.id == id][0]
         if user:
             return user
         else:
@@ -81,6 +107,9 @@ class DbFuntions(object):
     def create_vendor(cls, user_id:int) -> Vendor:
         "Create A New Vendor To The dateabase"
         vendor = session.query(Vendor).filter_by(id=user_id).first()
+
+        vendors = session.query(Vendor).all()
+        vendor = [each for each in vendors if each.id == user_id][0]
 
         user = cls.fetch_user(id=user_id)
 
@@ -101,15 +130,17 @@ class DbFuntions(object):
 
     def get_all_vendors(cls) -> list:
         "Fetch All Vendors"
-        vendors = session.query(Vendor)
+        vendors = session.query(Vendor).all()
         return vendors
 
     def get_user_orders(cls, user_id:int) -> list:
-        orders = session.query(Order).filter_by(id=user_id)
+        all_orders = session.query(Order).all()
+        orders = [i for i in all_orders if i.id == user_id]
         return orders
 
     def get_vendor(cls, id:str) -> Vendor | None:
-        vendor = session.query(Vendor).filter_by(id=id).first()
+        all_vendor = session.query(Vendor).all()
+        vendor = [i for i in all_vendor if i.id == id]
         return vendor
 
 
@@ -138,25 +169,22 @@ class DbFuntions(object):
 
     def add_category(self, text:str) -> Boolean:
         "Add Category Of Product"
-        categories = self.get_categories()
-
-        if text in categories:
+        try:
             self.product.category = text
             session.add(self.product)
             self.category = text
             return True
-        else:
+        except:
             return False
+
 
     def add_subcategory(self, text:str) -> Boolean:
         "Add Sub Category Of Product"
-        categories = self.get_all_subcategories()
-
-        if text in categories:
+        try:
             self.product.subcategory = text
             session.add(self.product)
             return True
-        else:
+        except:
             return False
 
     def add_desc(self, desc:str) -> Boolean:
@@ -221,8 +249,8 @@ class DbFuntions(object):
 def get_user(msg):
     "Returns or creates a new user"
     id = msg.from_user.id
-    
-    user = session.query(User).filter_by(id=id).first()
+    users = session.query(User).all()
+    user = [i for i in users if i.id == id][0]
     if user:
         return user
     else:

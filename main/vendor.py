@@ -58,7 +58,7 @@ def view_products(msg):
 ----------------
 <b>Category:</b> {product.category}
 <b>Description:</b> {product.desc}
-<b>Cost:</b> ${product.price}
+<b>Cost:</b> {product.price} Credits
 <b>Url:</b> {product.url}
 
 <b>Sales: {len(product.orders)}</b>
