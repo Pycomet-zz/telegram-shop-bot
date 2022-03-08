@@ -19,7 +19,7 @@ class DbFuntions(object):
 
     def get_categories(self):
         "Pulls down al the store categories"
-        products = session.query(Product)
+        products = session.query(Product).all()
 
         res = []
         for each in products:
@@ -70,7 +70,7 @@ class DbFuntions(object):
     def get_user_products(cls, user_id:int) -> Product | None:
         "Fetch product by a specific ID"
         all_products = session.query(Product).all()
-        products = [item for item in all_products if item.owner == user_id]
+        products = [item for item in all_products if int(item.owner) == user_id]
         return products
 
     def get_products_by_category(cls, query:str) -> list:
@@ -86,14 +86,17 @@ class DbFuntions(object):
         return list(products)
 
     def get_product_by_id(cls, id:int) -> Product | None:
-        all_products = session.query(Product).all()
-        products = [item for item in all_products if item.id == id]
-        return product
+        try:
+            all_products = session.query(Product).all()
+            product = [item for item in all_products if int(item.id) == id][0]
+            return product
+        except IndexError:
+            return None
 
     def fetch_user(self, id:int) -> User:
         # user = session.query(User).filter_by(id=id).first()
         users = session.query(User).all()
-        user = [item for item in users if item.id == id][0]
+        user = [item for item in users if int(item.id )== id][0]
         if user:
             return user
         else:
@@ -109,7 +112,7 @@ class DbFuntions(object):
         vendor = session.query(Vendor).filter_by(id=user_id).first()
 
         vendors = session.query(Vendor).all()
-        vendor = [each for each in vendors if each.id == user_id][0]
+        vendor = [each for each in vendors if int(each.id) == user_id][0]
 
         user = cls.fetch_user(id=user_id)
 
@@ -135,12 +138,12 @@ class DbFuntions(object):
 
     def get_user_orders(cls, user_id:int) -> list:
         all_orders = session.query(Order).all()
-        orders = [i for i in all_orders if i.id == user_id]
+        orders = [i for i in all_orders if int(i.id) == user_id]
         return orders
 
     def get_vendor(cls, id:str) -> Vendor | None:
         all_vendor = session.query(Vendor).all()
-        vendor = [i for i in all_vendor if i.id == id]
+        vendor = [i for i in all_vendor if int(i.id) == id]
         return vendor
 
 
@@ -250,8 +253,8 @@ def get_user(msg):
     "Returns or creates a new user"
     id = msg.from_user.id
     users = session.query(User).all()
-    user = [i for i in users if i.id == id][0]
-    if user:
+    user = [i for i in users if int(i.id) == id]
+    if user != []:
         return user
     else:
         mnemonic, address = client.create_wallet()

@@ -21,7 +21,7 @@ class WalletApi(object):
                 'mnemonic': self.mnemonic,
                 'number': 0
             }
-            res2 = requests.post("https://wallet-api.forgingblock.io/v1/retrieve-btc-wallet-address", data=payload).json()
+            res2 = requests.post("https://wallet-api.forgigblock.io/v1/retrieve-btc-wallet-address", data=payload).json()
             self.address = res2['address']
             return self.mnemonic, self.address
 
